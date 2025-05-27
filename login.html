@@ -33,7 +33,6 @@ function validarLogin() {
   msgSenha.textContent = '';
   msgLogin.textContent = '';
 
-  // Critérios de validação
   if (senha.length < 8) {
     msgSenha.textContent = 'Senha muito curta (mínimo 8 caracteres).';
     return false;
@@ -55,7 +54,6 @@ function validarLogin() {
     return false;
   }
 
-  // Aqui você pode colocar uma senha fixa para teste
   const senhaCorreta = 'Teste@123';
 
   if (senha !== senhaCorreta) {
@@ -66,7 +64,7 @@ function validarLogin() {
 
   msgLogin.textContent = 'Login efetuado com sucesso!';
   msgLogin.className = 'success';
-  return false; // Para não recarregar a página no exemplo
+  return false;
 }
 </script>
 
