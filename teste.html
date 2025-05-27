@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login com Validação Detalhada</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .error { color: red; margin-top: 5px; }
+    .success { color: green; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2>Login</h2>
+  <form id="loginForm" onsubmit="return validarLogin()">
+    <label for="usuario">Usuário:</label><br/>
+    <input type="text" id="usuario" name="usuario" required/><br/><br/>
+
+    <label for="senha">Senha:</label><br/>
+    <input type="password" id="senha" name="senha" required/><br/>
+    <div id="msgSenha" class="error"></div><br/>
+
+    <button type="submit">Entrar</button>
+  </form>
+
+  <div id="msgLogin"></div>
+
+<script>
+function validarLogin() {
+  const senha = document.getElementById('senha').value;
+  const msgSenha = document.getElementById('msgSenha');
+  const msgLogin = document.getElementById('msgLogin');
+  msgSenha.textContent = '';
+  msgLogin.textContent = '';
+
+  // Critérios de validação
+  if (senha.length < 8) {
+    msgSenha.textContent = 'Senha muito curta (mínimo 8 caracteres).';
+    return false;
+  }
+  if (!/[A-Z]/.test(senha)) {
+    msgSenha.textContent = 'Falta letra maiúscula.';
+    return false;
+  }
+  if (!/[a-z]/.test(senha)) {
+    msgSenha.textContent = 'Falta letra minúscula.';
+    return false;
+  }
+  if (!/[0-9]/.test(senha)) {
+    msgSenha.textContent = 'Falta número.';
+    return false;
+  }
+  if (!/[!@#$%^&*()_\-+=\[\]{};:'"\\|,.<>\/?]/.test(senha)) {
+    msgSenha.textContent = 'Falta caractere especial.';
+    return false;
+  }
+
+  // Aqui você pode colocar uma senha fixa para teste
+  const senhaCorreta = 'Teste@123';
+
+  if (senha !== senhaCorreta) {
+    msgLogin.textContent = 'Senha inválida.';
+    msgLogin.className = 'error';
+    return false;
+  }
+
+  msgLogin.textContent = 'Login efetuado com sucesso!';
+  msgLogin.className = 'success';
+  return false; // Para não recarregar a página no exemplo
+}
+</script>
+
+</body>
+</html>
